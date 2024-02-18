@@ -17,7 +17,6 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.4",
     "express": "^4.18.2",
     "express-promise-router": "^4.1.1",
     "helmet": "^7.1.0",
@@ -34,6 +33,9 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
+    "dotenv": "^16.4.4",
+    "dotenv-expand": "^11.0.6",
+    "joi": "^17.12.1",
     "nodemon": "^3.0.3",
     "sequelize-cli": "^6.6.2"
   }
