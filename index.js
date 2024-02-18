@@ -1,4 +1,4 @@
-const http = require("http");
+require("dotenv").config();
 const express = require("express");
 const helmet = require("helmet");
 const router = require("./backend/routes/");
@@ -15,12 +15,11 @@ app.use("/api", router);
 
 app.set("port", process.env.PORT || 4000);
 
-const server = http.createServer(app);
-
 if (process.env.NODE_ENV !== "test") {
-  server.listen(app.get("port"), () => {
+  app.listen(app.get("port"), () => {
     console.log("Server on port " + app.get("port") + " on dev");
   });
 }
 
 module.exports = app;
+ 
