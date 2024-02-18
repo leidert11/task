@@ -1,0 +1,9 @@
+Category:
+npx sequelize model:generate --name pedidos --attributes name:string,description:text,url:text,status:integer
+
+
+
+seed:
+npx sequelize-cli seed:generate --name Product
+seed:
+npx sequelize-cli seed:generate --name Product
