@@ -1,7 +1,7 @@
 "use strict";
 
 const { Sequelize, DataTypes } = require("sequelize");
-const config = require(__dirname + "/../config/config.js");
+const config = require(__dirname + "../config/config.js");
 
 class Database {
   constructor() {
