@@ -1,10 +1,9 @@
-"use strict";
-
-const { Model, DataTypes } = require("sequelize");
+const { Sequelize, Model, DataTypes } = require("sequelize");
+const sequelize = require("./database"); 
 
 class Task extends Model {
-  static associate({ User }) {
-    this.belongsTo(User, { foreignKey: "user" });
+  static associate(models) {
+    this.belongsTo(models.User, { foreignKey: "userId" });
   }
 
   validate() {
@@ -25,12 +24,9 @@ class Task extends Model {
 Task.init(
   {
     id: {
-      allowNull: false,
-      primaryKey: true,
       type: DataTypes.INTEGER,
-      validate: {
-        notEmpty: true,
-      },
+      primaryKey: true,
+      autoIncrement: true, // Agrega autoIncrement
     },
     nombre: {
       type: DataTypes.STRING,
@@ -54,13 +50,34 @@ Task.init(
         isIn: [["pendiente", "completada"]],
       },
     },
-    prioridad: DataTypes.INTEGER,
-    fecha_inicio: DataTypes.DATE,
-    fecha_limite: DataTypes.DATE,
+    prioridad: {
+      type: DataTypes.INTEGER,
+    },
+    fecha_inicio: {
+      type: DataTypes.DATE,
+    },
+    fecha_limite: {
+      type: DataTypes.DATE,
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "Users",
+        key: "id",
+      },
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE,
+    },
   },
   {
     sequelize,
-    modelName: "Task",
+    modelName: "Tasks",
     timestamps: true,
   }
 );
