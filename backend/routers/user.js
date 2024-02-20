@@ -4,9 +4,9 @@ const router = routex();
 
 router.get("/list",userController.list );
 router.post("/create",userController.create );
-router.get("/update",userController.update );
-router.get("/updatePassword",userController.updatePassword );
-router.get("/delete",userController.delete );
+router.put("/update",userController.update );
+router.put("/updatePassword",userController.updatePassword );
+router.delete("/delete",userController.delete );
 
 
 module.exports = router;

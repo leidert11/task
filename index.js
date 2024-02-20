@@ -1,11 +1,15 @@
 require("dotenv").config();
 const express = require("express");
-const helmet = require("helmet");
-const router = require("./backend/routes/");
+const morgan = require("morgan");
+const router = require("./backend/routers");
 const path = require("path");
+const bodyParser = require("body-parser");
 
 const app = express();
-app.use(helmet());
+app.use(morgan("dev"));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -22,4 +26,3 @@ if (process.env.NODE_ENV !== "test") {
 }
 
 module.exports = app;
- 
