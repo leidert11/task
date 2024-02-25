@@ -1,10 +1,10 @@
 require("dotenv").config();
 
-const models = require("../models");
 const bcrypt = require("bcrypt");
 
-module.exports = {
-  create: async (req, res, next) => {
+module.exports = (models) => {
+  return {
+  create: async (models,req, res, next) => {
     try {
       const { username, email, password } = req.body;
 
@@ -21,7 +21,7 @@ module.exports = {
         username,
         email,
         password: hashPassword,
-      });
+    });
 
       // Eliminar la propiedad `password` antes de enviar la respuesta
       const userWithoutPassword = _.omit(user, ["password"]);
@@ -34,12 +34,11 @@ module.exports = {
     }
   },
 
-  list: async (req, res, next) => {
+  list: async (models, req, res, next) => {
     try {
       const users = await models.User.findAll({
-        //ocultar el password
         attributes: { exclude: ["password"] },
-      });
+    });
 
       if (!users) {
         return res.status(404).send({ message: "No se encontraron usuarios" });
@@ -52,7 +51,7 @@ module.exports = {
       next(error);
     }
   },
-  update : async (req, res, next) => {
+  update : async (models ,req, res, next) => {
     try {
       const { id } = req.params;
       const { username, email , password } = req.body
@@ -80,7 +79,7 @@ module.exports = {
       next(error);
     }
   },
-  updatePassword: async (req, res, next) => {
+  updatePassword: async (models ,req , res, next) => {
     try {
       const { id } = req.params;
       const { currentPassword, newPassword } = req.body;
@@ -111,7 +110,7 @@ module.exports = {
       next(error);
     }
   },
-  delete: async (req, res, next) => {
+  delete: async (models,req, res, next) => {
     try {
       const { id } = req.params;
 
@@ -135,4 +134,5 @@ module.exports = {
       next(error);
     }
   },
+}
 };

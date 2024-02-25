@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "migrate": "npx sequelize-cli db:migrate --config ./backend/config/config.js",
-    "migrate:seed": "npx sequelize-cli db:seed:all --config ./backend/config/config.js --seeders-path ./backend/seeders",
-    "migrate:reset": "npx sequelize-cli db:migrate:undo:all --config ./backend/config/config.js && npm run migrate && npx sequelize-cli db:seed:all --config ./backend/config/config.js --seeders-path ./backend/seeders",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "scripts": {
+      "start": "node index.js",
+      "dev": "nodemon index.js",
+      "migrate": "npx sequelize-cli db:migrate --config ./backend/config/config.js",
+      "migrate:seed": "npx sequelize-cli db:seed:all --config ./backend/config/config.js --seeders-path ./backend/seeders",
+      "migrate:reset": "npx sequelize-cli db:migrate:undo:all --config ./backend/config/config.js && npm run migrate && npx sequelize-cli db:seed:all --config ./backend/config/config.js --seeders-path ./backend/seeders",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
   "keywords": [],
   "author": "leider tami",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-promise-router": "^4.1.1",
+    "express-validator": "^7.0.1",
     "helmet": "^7.1.0",
     "http": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
